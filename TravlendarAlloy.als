@@ -57,7 +57,7 @@ fact titleIsUnique{
 }
 
 fact oneEventAtOneTime{
-	all e1,e2: Event | gte[e1.startTime,e2.endTime] or gte[e2.startTime,e1.endTime]
+	all e1,e2: Event | gt[e1.startTime,e2.endTime] or gt[e2.startTime,e1.endTime]
 
 }
 
@@ -69,12 +69,12 @@ u.travellingPreferences.walk.isTrue or u.travellingPreferences.tram.isTrue or u.
 
 pred isDataCompleted[e: Event]{
 	e.title != none
-	gte[e.endTime, e.startTime]
+	gt[e.endTime, e.startTime]
 
 }
 
 pred freeTimeWindow[t1,t2: Time]{
-	all e: Event | gte[t1, e.endTime] or gte[e.startTime, t2]
+	all e: Event | gt[t1, e.endTime] or gt[e.startTime, t2]
 }
 
 

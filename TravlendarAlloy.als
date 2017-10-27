@@ -57,11 +57,11 @@ sig Break extends Event{
 }
 
 sig Position{
-	latitude: Int,
-	longitude: Int
+	latitude: one Int,
+	longitude: one Int
 }
 
---Each route has only one type of transport. It is true that they might have more but it is assumed to simplify.
+--Each route has only one type of transport. It is true that they might have more but it is assumed for simplicity.
 fact justOneTransportRoute{
 	all r: Route, u: User | r.transport.car.isTrue && u.travellingPreferences.car.isTrue => not r.transport.bike.isTrue && not r.transport.train.isTrue && not r.transport.tram.isTrue && not r.transport.plain.isTrue && not r.transport.taxi.isTrue && not r.transport.walk.isTrue && not r.transport.ship.isTrue
 	all r: Route, u: User | r.transport.ship.isTrue && u.travellingPreferences.ship.isTrue=> not r.transport.bike.isTrue && not r.transport.train.isTrue && not r.transport.tram.isTrue && not r.transport.plain.isTrue && not r.transport.taxi.isTrue && not r.transport.walk.isTrue && not r.transport.car.isTrue
@@ -87,9 +87,8 @@ fact titleIsUnique{
 
 --The latitude and longitude must be inside the valid values.
 fact validPosition{
-	all p:Position | p.latitude<90 && p.latitude>-90 && p.longitude>-180 && p.longitude<180
-}
 
+}
 --At any Time there must be just one event. Also the startTime and the endTime of the event must be different
 fact oneEventAtOneTime{
 	all disj e1,e2: Event | (gt[e1.startTime,e2.endTime] or gt[e2.startTime,e1.endTime]) 
@@ -158,5 +157,5 @@ pred deleteEvent[e: Event, u,u': User]{
 }
 
 
-run createNewEvent for 5 but 8 int, 2 User, 2 Calendar, exactly 2 Break, exactly 3 Meeting, exactly 3 Route, 10 Time, exactly 5 String
+run createNewEvent for 6 but exactly 5 String, 5 Position, 2 User, 8 int
 run deleteEvent for 6 but 8 int, exactly 5 String

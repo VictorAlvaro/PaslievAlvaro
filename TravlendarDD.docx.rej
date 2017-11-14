@@ -1,0 +1,59 @@
+diff a/TravlendarDD.docx b/TravlendarDD.docx	(rejected hunks)
+@@ -57,40 +57,40 @@
+ 
+ 1.3.1 Definitions
+ 
+- Meeting: personal or work-related appointment. In some parts of the text, meetings are referred as appointments.
+- User: a user of the Travlendar system
+- Calendar: a timetable containing meetings sorted by date
+- Alert: a notification or a pop-up screen. 
+- Customer: user that downloads the application.
++  * Meeting: personal or work-related appointment. In some parts of the text, meetings are referred as appointments.
++  * User: a user of the Travlendar system
++  * Calendar: a timetable containing meetings sorted by date
++  * Alert: a notification or a pop-up screen. 
++  * Customer: user that downloads the application.
+ 
+ 1.3.2 Acronyms
+ 
+- RASD: Requirement Analysis and Specification Document. 
+- API: Application Programming Interface  
++  * RASD: Requirement Analysis and Specification Document. 
++  * API: Application Programming Interface  
+ 
+ 1.3.3 Abbreviations
+ 
+- [Gn]: n-goal. 
+- [Dn]: n-domain assumption.
+- [Rn]: n-functional requirement. 
+- [Pn]: n-performance requirement. 
++  * [Gn]: n-goal. 
++  * [Dn]: n-domain assumption.
++  * [Rn]: n-functional requirement. 
++  * [Pn]: n-performance requirement. 
+ 1.4 Reference documents
+ 
+ 1.5 Document Structure
+ 
+- In the first part of the document specify what the design document is about. In the same way is explained, without going into much detail, how the application works. Finally, is given some information about definitions and abbreviations to better understand the rest of the document.
+-  In the second part it is given an overall description of the system including the functions of the application, clarifying some concepts of the system. Also list the actors who are going to take part of the system. In the same way the constraints and limitations of the system will be defined. Finally, are specified text and domain assumptions to resolve certain types of doubts that may arise by reading the document.
+- The third part of the document refers to specific requirements. We have defined both functional and non-functional requirements. In this part of the document we will go into more detail in the aspects mentioned in section 2.
++  1. In the first part of the document specify what the design document is about. In the same way is explained, without going into much detail, how the application works. Finally, is given some information about definitions and abbreviations to better understand the rest of the document.
++  2.  In the second part it is given an overall description of the system including the functions of the application, clarifying some concepts of the system. Also list the actors who are going to take part of the system. In the same way the constraints and limitations of the system will be defined. Finally, are specified text and domain assumptions to resolve certain types of doubts that may arise by reading the document.
++  3. The third part of the document refers to specific requirements. We have defined both functional and non-functional requirements. In this part of the document we will go into more detail in the aspects mentioned in section 2.
+ 2. ARCHITECTURAL DESIGN
+ 
+ 2.1 OVERVIEW
+ 
+ In our system we only have one element, the user application that will serve as an intermediary between the user and Google servers to perform certain queries. Thus, the user will interact with the application, the application will communicate the request to the servers. The servers will return information that the system will process and display to the user through the graphic interface of the application:
+- User application: represents the user who has downloaded the Travlendar application. The application allows the user to create their own calendar in such a way that they can create, edit and delete events. Within the events, the user will have to specify when creating a new one if this is a break or a meeting. Therefore, the only actors of the application will be the user and the software of the application. The user makes queries to the application through a graphical interface and the software responds with notifications, creating, deleting or editing new events, calculating how to reach the destination taking into account parameters acquired by the user's location (bad weather, strikes, distances, etc.) and user preferences. The application does not have a server or a database because the information is stored directly in the Google account of the user. For this reason, the user must have a google account which must be logged in, in such a way that the Google Calendar API can be accessed through the Google servers. This way we can avoid the purchase and maintenance of a server using this way a safe and cheap data storage such as Google. Saving the information in the user's account so that if the user changes the device they can continue using their calendar and do not have to create the events again.
++   1) User application: represents the user who has downloaded the Travlendar application. The application allows the user to create their own calendar in such a way that they can create, edit and delete events. Within the events, the user will have to specify when creating a new one if this is a break or a meeting. Therefore, the only actors of the application will be the user and the software of the application. The user makes queries to the application through a graphical interface and the software responds with notifications, creating, deleting or editing new events, calculating how to reach the destination taking into account parameters acquired by the user's location (bad weather, strikes, distances, etc.) and user preferences. The application does not have a server or a database because the information is stored directly in the Google account of the user. For this reason, the user must have a google account which must be logged in, in such a way that the Google Calendar API can be accessed through the Google servers. This way we can avoid the purchase and maintenance of a server using this way a safe and cheap data storage such as Google. Saving the information in the user's account so that if the user changes the device they can continue using their calendar and do not have to create the events again.
+ In addition, in the diagram there are also represented the external actors involved in the process of providing the service: 
+    - Google Maps: representation of the Google Maps Web Services. In particular:
+- GeoCoding API for the conversion of a string of text into a GPS position.
+- GeoLocation API for the GPS localization of devices.
++    > GeoCoding API for the conversion of a string of text into a GPS position.
++    > GeoLocation API for the GPS localization of devices.
+    - Google Calendar API: manipulates events and other calendar data. 
+ To store the information in the google account, the user must register with a Google account and the user's authentication with google will be done through the Firebase platform. In order to use this platform, the application must have installed Firebase SDK that will provide us with the authentication service through Google (FirebaseAuth).
+  
